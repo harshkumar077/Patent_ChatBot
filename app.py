@@ -58,6 +58,14 @@ def main():
             else:
                 # Generate an answer
                 answer = generate_answer(question, text)
+                # Extracting just the question and answer from the provided text
+                question_answer_text = re.search(r"Answer:\s*(.*)", answer, re.DOTALL)
+
+
+                # Extracted question and answer
+                # question = question_answer_text.group(1) if question_answer_text else "No question found"
+                answer = question_answer_text.group(1) if question_answer_text else "No answer found"
+
                 st.write("Answer:", answer)
         else:
             st.write("Please enter a valid file path and a question.")
